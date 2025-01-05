@@ -1,0 +1,16 @@
+{
+   "version": "0.2",
+   "language": "en",
+   "words": [
+      "agentic",
+      "amazonaws",
+      "bedrock",
+      "cdklabs",
+      "cebert",
+      "esbuild",
+      "nprc",
+      "npsapi",
+      "powertools"
+   ],
+   "dictionaries": ["filetypes", "node", "npm", "typescript"]
+}

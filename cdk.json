@@ -1,0 +1,22 @@
+{
+"app": "npx tsx bin/ai-bedrock-agent-national-parks.ts",
+  "watch": {
+    "include": [
+      "**"
+    ],
+    "exclude": [
+      "README.md",
+      "cdk*.json",
+      "cdk.out",
+      "**/*.d.ts",
+      "**/*.js",
+      "tsconfig.json",
+      "package*.json",
+      "node_modules",
+      "test"
+    ]
+  },
+  "context": {
+    "@aws-cdk/core:newStyleStackSynthesis": true
+  }
+}
