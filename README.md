@@ -2,7 +2,7 @@
 
 This repository demonstrates how AWS Bedrock can be used to create AI Agents that can fetch information on users' behalf. The Agent in this example repo can answer questions about U.S National Parks using a Lambda as its action handler.
 
-This project leverages Amazon Bedrock, Bedrock Action Groups, and AWS Lambda and integrates with the U.S. National Parks Service API to serve as a realistic demonstration.
+This project leverages Amazon Bedrock, Bedrock Action Groups, Amazon CDK, and AWS Lambda and integrates with the U.S. National Parks Service API to serve as a realistic demonstration.
 
 AWS Bedrock support model support varies across regions. This project was tested deploying to the `us-east-1` region, which currently has the most robust Bedrock Foundation Model (FM) support. See [Model support by AWS Region in Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html).
 
@@ -11,7 +11,7 @@ AWS Bedrock support model support varies across regions. This project was tested
 This project showcases:
 
 - An AWS Bedrock Agent integration with an external API, such as the U.S. National Parks Service API
-- Using AWS CDK infrastructure as code (IaC) to deploy a Bedrock agent
+- Using AWS CDK infrastructure as code (IaC) to deploy a Bedrock agent using the (currently) experimental [AWS Generative AI Constructs Library](https://github.com/awslabs/generative-ai-cdk-constructs)
 - TypeScript Lambda function development
 
 ## Features
@@ -144,13 +144,14 @@ Replace `<AWS_ACCOUNT_ID>` with your AWS account ID and `<SSO_PROFILE_NAME>` wit
 
 ## Links
 
-- [Building Effective AI Agents](https://www.anthropic.com/research/building-effective-agents)
-   - This Anthropic blog post provides a great introduction to AI Agents and patterns for building agentic software.
+- [AWS CDK Documentation](https://docs.aws.amazon.com/cdk/latest/guide/home.html)
+- [AWS Generative AI Constructs Library](https://github.com/awslabs/generative-ai-cdk-constructs)
 - [Bedrock Documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html)
    - Link official AWS Bedrock documentation
+- [Building Effective AI Agents](https://www.anthropic.com/research/building-effective-agents)
+   - This Anthropic blog post provides a great introduction to AI Agents and patterns for building agentic software.
 - [NPS API Documentation](https://www.nps.gov/subjects/developer/api-documentation.htm)
    - API Documentation for the free U.S. National Parks Service API.
-- [AWS CDK Documentation](https://docs.aws.amazon.com/cdk/latest/guide/home.html)
 
 ## License
 
