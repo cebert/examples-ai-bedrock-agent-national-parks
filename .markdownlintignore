@@ -1,0 +1,7 @@
+.vscode
+cdk.out
+bin
+lib
+dist
+node_modules
+test
