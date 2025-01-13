@@ -102,17 +102,17 @@ flowchart LR
     NPS -->|4. Park info| Lambda
     Lambda -->|5. Format response| Agent
     Agent -->|6. Natural response| User
-
     %% Styling
     classDef aws fill:#FF9900,stroke:#232F3E,stroke-width:2px,color:white;
     classDef external fill:#85B09A,stroke:#232F3E,stroke-width:2px,color:white;
     classDef user fill:#3F8624,stroke:#232F3E,stroke-width:2px,color:white;
-
     class Agent,Lambda aws;
     class NPS external;
     class User user;
 
+
 ### Costs
+
 Remember you are charged for
 1. Bedrock Model invocations
 1. Lambda invocations

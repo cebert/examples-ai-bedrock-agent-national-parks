@@ -1,5 +1,6 @@
 # Project TODO List
 
+- Improve formatting of AI responses with better prompt instructions
 - Add rate limiting to prevent excessive API usage.
 - Enhance prompt customization options to allow more flexibility in configurations (the current setup is basic).
 - Add guardrails to prevent abuse and ensure secure usage of the system.
