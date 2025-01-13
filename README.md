@@ -227,7 +227,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contributing
 
 Feel free to fork this repository or use any of the code. I don't plan to actively maintain this example as an Open Source project.
-
-```
-
-```
