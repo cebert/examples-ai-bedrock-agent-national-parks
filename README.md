@@ -1,9 +1,9 @@
 # AWS Bedrock Agent National Parks Service Example
 
-This repository demonstrates how AWS Bedrock can be used to create AI Agents that can fetch information on users' behalf. The Agent in this example repo can answer questions about U.S National Parks. This project deploys a working AI Agent that can answer questions about national
+This repository demonstrates the use of Amazon Bedrock to create AI agents that can form tasks on behalf of users. The Agent in this example repo can answer questions about U.S National Parks. This project deploys a working AI Agent that can answer questions about national
 parks and calls an actual, publicly exposed API by the U.S National Parks.
 
-This project leverages Amazon Bedrock, Bedrock Action Groups, Amazon CDK, and AWS Lambda and integrates with the U.S. National Parks Service API to serve as a realistic demonstration.
+This project leverages Amazon Bedrock, Bedrock Action Groups, Amazon CDK, and AWS Lambda and integrates with the U.S. National Parks Service API to serve as a realistic demonstration. This AI agent executes a straightforward task: calling a single API using Amazon Bedrock Actions. It doesn't use advanced agentic AI patterns such as routing, chaining, or parallelization patterns.
 
 AWS Bedrock support model support varies across regions. This project was tested deploying to the `us-east-1` region, which currently has the most robust Bedrock Foundation Model (FM) support. See [Model support by AWS Region in Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html).
 
@@ -30,7 +30,7 @@ This project uses the [National Parks Service API](https://www.nps.gov/subjects/
 - `/parks` - Get the list of parks
 - `/parks/{parkCode}` - Get specific park details
 
-Please review the [NPS API Terms of Service](https://www.nps.gov/subjects/developer/terms-of-service.htm). To use this project in your AWS account, you must request a free NPS API key.
+Please review the [NPS API Terms of Service](https://www.nps.gov/subjects/developer/terms-of-service.htm). You must request a free NPS API key to use this project in your AWS account.
 
 ## Project Structure
 
@@ -67,10 +67,16 @@ Example test query:
 ![Architecture Diagram](architecture.png) - TODO
 
 1. User queries the Bedrock Agent
-1. The Agent determines the appropriate action
-1. Lambda function is invoked
-1. Lambda calls NPS API
+1. The Agent determines the appropriate action group for the request
+1. Lambda function is invoked using the API Spec provided to the Action Group
+1. Lambda calls the National Parks Service API
 1. Response is formatted and returned to the user
+
+## Deployment
+
+This project leverages the experimental [generative-ai-cdk-constructs](https://github.com/awslabs/generative-ai-cdk-constructs) library to
+easily configure and deploy AWS Bedrock and Action Groups. Several constructs in this library help make provisioning and deploying generative AI projects. Since this is an experimental library and this space is evolving, rapidly expect this library to change
+frequently.
 
 ## Setup Steps
 
