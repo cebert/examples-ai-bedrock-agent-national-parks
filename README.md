@@ -35,17 +35,18 @@ Please review the [NPS API Terms of Service](https://www.nps.gov/subjects/develo
 ## Project Structure
 
 ```plaintext
-├── bin/ # CDK app entry point
-│ ├── ai-bedrock-agent-national-parks.ts
+├── bin/ # CDK entry point
+│ ├── national-parks-bedrock-agent-example
 ├── lib/ # CDK IaC
+| ├── schema # Contains an Open API 3.0.1 spec we share with the Action Group
 │ ├── stacks/ # CDK stacks
-| └── national-parks-api-stack.ts
-│ └── constructs/ # Reusable constructs (not currently used)
+│  ├── bedrock-agent-stack.ts # Deploys a Bedrock Agent, Action Group, and sets up IAM
+│  ├── national-parks-api-stack.ts # Deploys Lambda that interacts with NPS API
 ├── src/
 │ ├── clients/ # API clients
 │ │ └── nps/ # National Parks Service API client
 │ └── functions/ # Lambda functions
-│ └── parks/ # Parks info Lambda
+│ │ └── parks/ # Parks info Lambda
 └── test/ # Tests (currently not used)
 ```
 
@@ -139,19 +140,24 @@ Replace `<AWS_ACCOUNT_ID>` with your AWS account ID and `<SSO_PROFILE_NAME>` wit
 1. Deploy the CDK application to AWS:
 
    ```bash
-      npm run deploy -- --profile <SSO_PROFILE_NAME>
+      npm run deploy -- --profile <SSO_PROFILE_NAME> --all
    ```
 
 ## Links
 
+- [Getting started with Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started.html)
 - [AWS CDK Documentation](https://docs.aws.amazon.com/cdk/latest/guide/home.html)
 - [AWS Generative AI Constructs Library](https://github.com/awslabs/generative-ai-cdk-constructs)
 - [Bedrock Documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html)
    - Link official AWS Bedrock documentation
 - [Building Effective AI Agents](https://www.anthropic.com/research/building-effective-agents)
    - This Anthropic blog post provides a great introduction to AI Agents and patterns for building agentic software.
+- [Defining Bedrock Agent Action Groups](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-action-create.html)
+   - Explains how to define an action group, which instructs the agent which actions it can perform on behalf of a user
 - [NPS API Documentation](https://www.nps.gov/subjects/developer/api-documentation.htm)
    - API Documentation for the free U.S. National Parks Service API.
+- [Anthropic Model comparison table](https://docs.anthropic.com/en/docs/about-claude/models)
+- [Telecom Bedrock Agent Example in using CloudFormation](https://github.com/aws-samples/bedrock-agent-and-telecom-apis/blob/main/openAPI-spec/ParcelStatus-API.json)
 
 ## License
 

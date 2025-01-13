@@ -8,9 +8,12 @@
       "cdklabs",
       "cebert",
       "esbuild",
+      "isro",
       "nprc",
       "npsapi",
-      "powertools"
+      "powertools",
+      "Royale"
    ],
-   "dictionaries": ["filetypes", "node", "npm", "typescript"]
+   "dictionaries": ["filetypes", "node", "npm", "typescript"],
+   "ignorePaths": ["cdk.out/", "node_modules/"]
 }
