@@ -208,7 +208,7 @@ Replace `<AWS_ACCOUNT_ID>` with your AWS account ID and `<SSO_PROFILE_NAME>` wit
 
 - [AWS CDK Documentation](https://docs.aws.amazon.com/cdk/latest/guide/home.html) - Complete guide to AWS Cloud Development Kit
 - [AWS Generative AI Constructs Library](https://github.com/awslabs/generative-ai-cdk-constructs) - CDK constructs for working with AWS AI services
-- [Telecom Bedrock Agent Example](https://github.com/aws-samples/bedrock-agent-and-telecom-apis) - Reference implementation using CloudFormation
+- [Telecom Bedrock Agent Example](https://github.com/aws-samples/bedrock-agent-and-telecom-apis) - Reference implementation using CloudFormation (not CDK)
 
 ### API Documentation
 
