@@ -7,3 +7,4 @@
 - Develop a front-end application accessible outside the AWS Console for better user experience.
 - Consider creating a generic CDK construct for deploying AI agents to streamline deployments.
 - Add unit tests to improve code quality and reliability (skipped initially since this isn't a production app).
+- Consider making a reusable Bedrock Agent construct in the future

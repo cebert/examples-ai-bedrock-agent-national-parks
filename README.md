@@ -1,6 +1,7 @@
 # AWS Bedrock Agent National Parks Service Example
 
-This repository demonstrates how AWS Bedrock can be used to create AI Agents that can fetch information on users' behalf. The Agent in this example repo can answer questions about U.S National Parks using a Lambda as its action handler.
+This repository demonstrates how AWS Bedrock can be used to create AI Agents that can fetch information on users' behalf. The Agent in this example repo can answer questions about U.S National Parks. This project deploys a working AI Agent that can answer questions about national
+parks and calls an actual, publicly exposed API by the U.S National Parks.
 
 This project leverages Amazon Bedrock, Bedrock Action Groups, Amazon CDK, and AWS Lambda and integrates with the U.S. National Parks Service API to serve as a realistic demonstration.
 
@@ -20,7 +21,6 @@ The Bedrock Agent can:
 
 - Search for parks by state
 - Get detailed information about specific parks
-- Search parks by keywords
 - Provide visitor information like operating hours and entrance fees
 
 ### National Parks Service API
@@ -44,7 +44,7 @@ Please review the [NPS API Terms of Service](https://www.nps.gov/subjects/develo
 │  ├── national-parks-api-stack.ts # Deploys Lambda that interacts with NPS API
 ├── src/
 │ ├── clients/ # API clients
-│ │ └── nps/ # National Parks Service API client
+│ │ └── nps/ # National Parks Service API client directory
 │ └── functions/ # Lambda functions
 │ │ └── parks/ # Parks info Lambda
 └── test/ # Tests (currently not used)
@@ -81,6 +81,7 @@ Example test query:
    - ([Get one here](https://www.nps.gov/subjects/developer/get-started.htm))
 - AWS Account with Bedrock access
    - _Note:_ AWS accounts don't have access to FMs by default. You must request access to the model(s) you wish to use and experiment with. The process is easy. In personal accounts, I recommend requesting access to all available FMs at once. As of January 2025, the `us-east-1` supports the most FMs. It's recommended that you run out of that region.
+   - This project is currently using ANTHROPIC_CLAUDE_SONNET_V1_0
 
 ### Initial Setup
 
@@ -104,7 +105,7 @@ The following steps only need to be performed once for initial setup.
    ```plaintext
    NPS_API_KEY=your_api_key_here
    AWS_ACCOUNT=your_aws_account_number
-   AWS_REGION=your_aws_region
+   AWS_REGION=us-east-1
    ```
 
 1. Using the AWS CLI, configure and authenticate with AWS using your SSO credentials:
@@ -149,7 +150,7 @@ Replace `<AWS_ACCOUNT_ID>` with your AWS account ID and `<SSO_PROFILE_NAME>` wit
 - [AWS CDK Documentation](https://docs.aws.amazon.com/cdk/latest/guide/home.html)
 - [AWS Generative AI Constructs Library](https://github.com/awslabs/generative-ai-cdk-constructs)
 - [Bedrock Documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html)
-   - Link official AWS Bedrock documentation
+   - Links to official AWS Bedrock documentation
 - [Building Effective AI Agents](https://www.anthropic.com/research/building-effective-agents)
    - This Anthropic blog post provides a great introduction to AI Agents and patterns for building agentic software.
 - [Defining Bedrock Agent Action Groups](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-action-create.html)
