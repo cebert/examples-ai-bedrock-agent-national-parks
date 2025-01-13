@@ -134,7 +134,7 @@ frequently.
    - ([Get one here](https://www.nps.gov/subjects/developer/get-started.htm))
 - AWS Account with Bedrock access
    - _Note:_ AWS accounts don't have access to FMs by default. You must request access to the model(s) you wish to use and experiment with. The process is easy. In personal accounts, I recommend requesting access to all available FMs at once. As of January 2025, the `us-east-1` supports the most FMs. It's recommended that you run out of that region.
-   - This project is currently using ANTHROPIC_CLAUDE_SONNET_V1_0
+   - This project is currently using _ANTHROPIC_CLAUDE_SONNET_V1_0_ with on-demand pricing. You can feel free to experiment with different FMs.
 
 ### Initial Setup
 
@@ -146,8 +146,6 @@ The following steps only need to be performed once for initial setup.
    git clone https://github.com/cebert/examples-ai-bedrock-agent-national-parks.git
    cd examples-ai-bedrock-agent-national-parks
    ```
-
-````
 
 1. Install dependencies:
 
@@ -229,4 +227,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contributing
 
 Feel free to fork this repository or use any of the code. I don't plan to actively maintain this example as an Open Source project.
-````
+
+```
+
+```
