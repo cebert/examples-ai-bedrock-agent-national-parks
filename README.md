@@ -94,7 +94,7 @@ The agent can:
 
 The following diagram illustrates how information flows through the system when a user interacts with the National Parks Agent:
 
-````mermaid
+```mermaid
 flowchart LR
     User[User] -->|1. Ask about parks| Agent[Bedrock Agent]
     Agent -->|2. Process request| Lambda[Lambda Function]
@@ -109,15 +109,15 @@ flowchart LR
     class Agent,Lambda aws;
     class NPS external;
     class User user;
-
+```
 
 ### Costs
 
 Remember you are charged for
-1. Bedrock Model invocations
-1. Lambda invocations
-1. CloudWatch logs
 
+1. Bedrock Model invocations
+2. Lambda invocations
+3. CloudWatch logs
 
 ## Deployment
 
@@ -145,6 +145,8 @@ The following steps only need to be performed once for initial setup.
    ```bash
    git clone https://github.com/cebert/examples-ai-bedrock-agent-national-parks.git
    cd examples-ai-bedrock-agent-national-parks
+   ```
+
 ````
 
 1. Install dependencies:
@@ -227,3 +229,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contributing
 
 Feel free to fork this repository or use any of the code. I don't plan to actively maintain this example as an Open Source project.
+````

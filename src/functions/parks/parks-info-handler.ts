@@ -1,5 +1,4 @@
 import { Logger } from '@aws-lambda-powertools/logger';
-import { NPSClient } from '../../clients/nps/index.js';
 
 import {
    NPSAuthenticationError,
@@ -7,6 +6,8 @@ import {
    NPSRateLimitError,
    NPSValidationError,
 } from '../../clients/nps/errors.js';
+import { NPSClient } from '../../clients/nps/index.js';
+
 
 import {
    DEFAULT_NPS_CLIENT_TIMEOUT,
