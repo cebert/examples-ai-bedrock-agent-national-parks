@@ -7,6 +7,8 @@ This project leverages Amazon Bedrock, Bedrock Action Groups, Amazon CDK, and AW
 
 AWS Bedrock support model support varies across regions. This project was tested deploying to the `us-east-1` region, which currently has the most robust Bedrock Foundation Model (FM) support. See [Model support by AWS Region in Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html).
 
+If you plan to deploy this project yourself, I assume you have some basic knowledge of AWS Bedrock, AWS CDK, and AWS Lambda. If you don't have experience with these topics reading the additional resources included later on this page would be helpful.
+
 ## Overview
 
 This project showcases:
@@ -52,25 +54,70 @@ Please review the [NPS API Terms of Service](https://www.nps.gov/subjects/develo
 
 ## Using the Bedrock Agent
 
-You can test the Agent through:
+Once deployed, you can interact with your National Parks Agent through:
 
-- AWS Console Bedrock Playground
-- Direct Lambda invocation
-- AWS SDK integration
+1. **AWS Console**
 
-Example test query:
+   - Navigate to Amazon Bedrock in your AWS Console
+   - Select "Agents" from the left sidebar
+   - Find your agent named "national-parks-info-agent"
+   - Click "Test" to open the playground
+   - Type your questions in natural language
+     Example test query:
+
+2. **AWS SDK**
+   - Use the `BedrockAgentRuntime` client
+   - Call the `invoke` operation
+   - See AWS SDK documentation for language-specific examples
+
+### Example Queries
+
+Try asking the agent questions like:
 
 - "What national parks are in Michigan?"
+- "Tell me about Keweenaw National Historical Park?"
+- "List the names of every park in Ohio"
 
-## Architecture
+### Understanding Agent Capabilities
 
-![Architecture Diagram](architecture.png) - TODO
+The agent can:
 
-1. User queries the Bedrock Agent
-1. The Agent determines the appropriate action group for the request
-1. Lambda function is invoked using the API Spec provided to the Action Group
-1. Lambda calls the National Parks Service API
-1. Response is formatted and returned to the user
+- Search for parks in a specific state
+- Provide detailed information about individual parks including:
+   - Description and location
+   - Entrance fees
+   - Operating hours
+   - Directions
+   - Weather information
+
+### System Flow
+
+The following diagram illustrates how information flows through the system when a user interacts with the National Parks Agent:
+
+````mermaid
+flowchart LR
+    User[User] -->|1. Ask about parks| Agent[Bedrock Agent]
+    Agent -->|2. Process request| Lambda[Lambda Function]
+    Lambda -->|3. Fetch data| NPS[National Parks API]
+    NPS -->|4. Park info| Lambda
+    Lambda -->|5. Format response| Agent
+    Agent -->|6. Natural response| User
+
+    %% Styling
+    classDef aws fill:#FF9900,stroke:#232F3E,stroke-width:2px,color:white;
+    classDef external fill:#85B09A,stroke:#232F3E,stroke-width:2px,color:white;
+    classDef user fill:#3F8624,stroke:#232F3E,stroke-width:2px,color:white;
+
+    class Agent,Lambda aws;
+    class NPS external;
+    class User user;
+
+### Costs
+Remember you are charged for
+1. Bedrock Model invocations
+1. Lambda invocations
+1. CloudWatch logs
+
 
 ## Deployment
 
@@ -98,7 +145,7 @@ The following steps only need to be performed once for initial setup.
    ```bash
    git clone https://github.com/cebert/examples-ai-bedrock-agent-national-parks.git
    cd examples-ai-bedrock-agent-national-parks
-   ```
+````
 
 1. Install dependencies:
 
@@ -150,21 +197,28 @@ Replace `<AWS_ACCOUNT_ID>` with your AWS account ID and `<SSO_PROFILE_NAME>` wit
       npm run deploy -- --profile <SSO_PROFILE_NAME> --all
    ```
 
-## Links
+## Additional Resources
 
-- [Getting started with Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started.html)
-- [AWS CDK Documentation](https://docs.aws.amazon.com/cdk/latest/guide/home.html)
-- [AWS Generative AI Constructs Library](https://github.com/awslabs/generative-ai-cdk-constructs)
-- [Bedrock Documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html)
-   - Links to official AWS Bedrock documentation
-- [Building Effective AI Agents](https://www.anthropic.com/research/building-effective-agents)
-   - This Anthropic blog post provides a great introduction to AI Agents and patterns for building agentic software.
-- [Defining Bedrock Agent Action Groups](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-action-create.html)
-   - Explains how to define an action group, which instructs the agent which actions it can perform on behalf of a user
-- [NPS API Documentation](https://www.nps.gov/subjects/developer/api-documentation.htm)
-   - API Documentation for the free U.S. National Parks Service API.
-- [Anthropic Model comparison table](https://docs.anthropic.com/en/docs/about-claude/models)
-- [Telecom Bedrock Agent Example in using CloudFormation](https://github.com/aws-samples/bedrock-agent-and-telecom-apis/blob/main/openAPI-spec/ParcelStatus-API.json)
+### AWS Bedrock & Agents
+
+- [Getting Started with Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started.html) - Official guide for getting started with AWS Bedrock
+- [Defining Bedrock Agent Action Groups](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-action-create.html) - Learn how to define agent actions and their behaviors
+- [Building Effective AI Agents](https://www.anthropic.com/research/building-effective-agents) - Anthropic's guide to AI Agent design patterns and best practices
+
+### Development Tools & SDKs
+
+- [AWS CDK Documentation](https://docs.aws.amazon.com/cdk/latest/guide/home.html) - Complete guide to AWS Cloud Development Kit
+- [AWS Generative AI Constructs Library](https://github.com/awslabs/generative-ai-cdk-constructs) - CDK constructs for working with AWS AI services
+- [Telecom Bedrock Agent Example](https://github.com/aws-samples/bedrock-agent-and-telecom-apis) - Reference implementation using CloudFormation
+
+### API Documentation
+
+- [National Parks Service API](https://www.nps.gov/subjects/developer/api-documentation.htm) - Documentation for the NPS API used in this project
+- [Bedrock API Reference](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html) - Comprehensive AWS Bedrock API documentation
+
+### Model Information
+
+- [Anthropic Model Comparison](https://docs.anthropic.com/en/docs/about-claude/models) - Details about different Claude models and their capabilities
 
 ## License
 
