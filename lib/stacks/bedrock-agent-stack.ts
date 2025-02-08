@@ -1,14 +1,14 @@
-import { bedrock } from '@cdklabs/generative-ai-cdk-constructs';
+import * as cdk from "aws-cdk-lib";
+import * as iam from "aws-cdk-lib/aws-iam";
+import * as lambda from "aws-cdk-lib/aws-lambda";
+import parksApiSchema from "../schema/parks-api-schema.json";
+import { bedrock } from "@cdklabs/generative-ai-cdk-constructs";
+import { Construct } from "constructs";
+
 import {
    AgentActionGroup,
    ApiSchema,
 } from '@cdklabs/generative-ai-cdk-constructs/lib/cdk-lib/bedrock';
-import * as cdk from 'aws-cdk-lib';
-import * as iam from 'aws-cdk-lib/aws-iam';
-import * as lambda from 'aws-cdk-lib/aws-lambda';
-import { Construct } from 'constructs';
-
-import parksApiSchema from '../schema/parks-api-schema.json';
 
 /**
  * Properties for configuring the BedrockAgentStack.
