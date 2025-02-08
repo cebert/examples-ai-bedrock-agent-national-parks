@@ -219,6 +219,10 @@ Replace `<AWS_ACCOUNT_ID>` with your AWS account ID and `<SSO_PROFILE_NAME>` wit
 
 - [Anthropic Model Comparison](https://docs.anthropic.com/en/docs/about-claude/models) - Details about different Claude models and their capabilities
 
+### TODOs
+
+This repository has a TODO list that list potential future project enhancements
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
