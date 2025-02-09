@@ -1,0 +1,318 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "description": "API for retrieving National Parks information.",
+        "title": "National Parks API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/parks/details": {
+            "get": {
+                "description": "Get detailed information about a specific park.",
+                "operationId": "getParkDetails",
+                "parameters": [
+                    {
+                        "description": "Unique park code to retrieve detailed information about a park.",
+                        "example": "yell",
+                        "in": "query",
+                        "name": "parkCode",
+                        "required": true,
+                        "schema": {
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detailed information about the park.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "messageVersion": {
+                                            "description": "Version of the response message format.",
+                                            "example": "1.0",
+                                            "type": "string"
+                                        },
+                                        "response": {
+                                            "properties": {
+                                                "actionGroup": {
+                                                    "description": "Identifier for the action group used in the response.",
+                                                    "example": "national-parks-info-action-group",
+                                                    "type": "string"
+                                                },
+                                                "apiPath": {
+                                                    "description": "API endpoint that was called.",
+                                                    "example": "/parks/details",
+                                                    "type": "string"
+                                                },
+                                                "httpMethod": {
+                                                    "description": "HTTP method used for the request.",
+                                                    "example": "GET",
+                                                    "type": "string"
+                                                },
+                                                "httpStatusCode": {
+                                                    "description": "HTTP status code returned by the API.",
+                                                    "example": 200,
+                                                    "type": "integer"
+                                                },
+                                                "responseBody": {
+                                                    "properties": {
+                                                        "body": {
+                                                            "properties": {
+                                                                "description": {
+                                                                    "description": "Introductory paragraph from the park homepage.",
+                                                                    "type": "string"
+                                                                },
+                                                                "designation": {
+                                                                    "description": "Type of designation (eg, national park, national monument, national recreation area, etc)",
+                                                                    "type": "string"
+                                                                },
+                                                                "directionsInfo": {
+                                                                    "description": "General overview of how to get to the park.",
+                                                                    "type": "string"
+                                                                },
+                                                                "fullName": {
+                                                                    "description": "Full park name (with designation).",
+                                                                    "type": "string"
+                                                                },
+                                                                "latitude": {
+                                                                    "description": "Latitude of the park's location.",
+                                                                    "example": 44.6,
+                                                                    "type": "number"
+                                                                },
+                                                                "longitude": {
+                                                                    "description": "Longitude of the park's location.",
+                                                                    "example": -110.5,
+                                                                    "type": "number"
+                                                                },
+                                                                "name": {
+                                                                    "description": "Short name of the park.",
+                                                                    "type": "string"
+                                                                },
+                                                                "parkCode": {
+                                                                    "description": "Unique code for identifying the park.",
+                                                                    "type": "string"
+                                                                },
+                                                                "states": {
+                                                                    "description": "States where the park is located (comma-separated for multiple states).",
+                                                                    "example": "WY",
+                                                                    "type": "string"
+                                                                },
+                                                                "url": {
+                                                                    "description": "Website URL for the park.",
+                                                                    "example": "https://www.nps.gov/yell",
+                                                                    "type": "string"
+                                                                },
+                                                                "weatherInfo": {
+                                                                    "description": "General information about the weather in the park.",
+                                                                    "example": "Cold in winter, warm in summer.",
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "sessionAttributes": {
+                                            "description": "Attributes specific to the user session.",
+                                            "additionalProperties": {
+                                                "type": "string"
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request, e.g., missing or invalid parkCode.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Details of the error that occurred.",
+                                            "example": "Invalid or missing parkCode. Provide a valid parkCode.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Details of the error that occurred.",
+                                            "example": "An unexpected error occurred.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/parks/search": {
+            "get": {
+                "description": "Search for parks by state.",
+                "operationId": "searchParks",
+                "parameters": [
+                    {
+                        "description": "Two-letter state code to filter parks.",
+                        "example": "CA",
+                        "in": "query",
+                        "name": "stateCode",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 2,
+                            "minLength": 2,
+                            "pattern": "^[A-Z]{2}$",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of parks filtered by state.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "messageVersion": {
+                                            "description": "Version of the response message format.",
+                                            "example": "1.0",
+                                            "type": "string"
+                                        },
+                                        "response": {
+                                            "properties": {
+                                                "actionGroup": {
+                                                    "description": "Identifier for the action group used in the response.",
+                                                    "type": "string"
+                                                },
+                                                "apiPath": {
+                                                    "description": "API endpoint that was called.",
+                                                    "type": "string"
+                                                },
+                                                "httpMethod": {
+                                                    "description": "HTTP method used for the request.",
+                                                    "example": "GET",
+                                                    "type": "string"
+                                                },
+                                                "httpStatusCode": {
+                                                    "description": "HTTP status code returned by the API.",
+                                                    "example": 200,
+                                                    "type": "integer"
+                                                },
+                                                "responseBody": {
+                                                    "properties": {
+                                                        "body": {
+                                                            "description": "List of parks that match the search criteria.",
+                                                            "items": {
+                                                                "properties": {
+                                                                    "description": {
+                                                                        "description": "General description of the park.",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "fullName": {
+                                                                        "description": "Full park name (with designation).",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "name": {
+                                                                        "description": "Short park name (no designation)",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "parkCode": {
+                                                                        "description": "Unique code for identifying the park.",
+                                                                        "example": "isro",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "stateCode": {
+                                                                        "description": "State code where the park is located.",
+                                                                        "example": "MI",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "url": {
+                                                                        "description": "Website URL for the park.",
+                                                                        "example": "https://www.nps.gov/isro/index.htm",
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            },
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "sessionAttributes": {
+                                            "description": "Attributes specific to the user session.",
+                                            "additionalProperties": {
+                                                "type": "string"
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request, e.g., missing or invalid stateCode.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Details of the error that occurred.",
+                                            "example": "Invalid or missing stateCode. Provide a two-letter state code.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Details of the error that occurred.",
+                                            "example": "An unexpected error occurred.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

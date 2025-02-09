@@ -221,7 +221,7 @@ Replace `<AWS_ACCOUNT_ID>` with your AWS account ID and `<SSO_PROFILE_NAME>` wit
 
 ### TODOs
 
-This repository has a TODO list that list potential future project enhancements
+This repository has a [TODO list](https://github.com/cebert/examples-ai-bedrock-agent-national-parks/blob/main/TODO.md) that list potential future project enhancements
 
 ## License
 

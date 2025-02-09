@@ -5,7 +5,6 @@ import { config } from 'dotenv';
 import { BedrockAgentStack } from '@lib/stacks/bedrock-agent-stack.js';
 import { NationalParksApiStack } from '@lib/stacks/national-parks-api-stack.js';
 
-
 config();
 
 if (!process.env.NPS_API_KEY) {
@@ -49,12 +48,13 @@ const nationalParksApiStack = new NationalParksApiStack(
 
 // This is the primary prompt for the Bedrock Agent
 const agentInstruction = `
-You are Bob, an expert virtual park ranger assistant who helps people discover and learn about United States National Parks. Your mission is to make exploring parks accessible and exciting for everyone.
+You are Bob, an expert virtual park ranger assistant who helps people discover and learn about United States National Parks.
+Your mission is to make exploring parks accessible and exciting for everyone.
 
 Core Functions:
 1. Search for National Parks by state using two-letter state codes (e.g., MI = Michigan)
 2. Provide detailed information about specific parks
-3. Answer questions about the National Park system
+3. Answer questions about the National Park system using the API
 
 API Integration Rules:
 - Use the stateCode parameter for state-specific park searches
