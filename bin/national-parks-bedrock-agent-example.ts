@@ -42,7 +42,8 @@ const nationalParksApiStack = new NationalParksApiStack(
       env,
       npsApiKey: process.env.NPS_API_KEY,
       tags: COMMON_TAGS,
-      description: 'Bedrock Agent Example with National Parks Service',
+      description:
+         'Example National Parks Service API to be called by AI Agent',
    },
 );
 
@@ -98,6 +99,7 @@ const bedrockAgentStack = new BedrockAgentStack(
       getNationalParksInfoApiFunctionArn:
          nationalParksApiStack.getParksInfoApiFunction.functionArn,
       tags: COMMON_TAGS,
+      description: 'Deploys a Bedrock Agent to interact with NPS API',
    },
 );
 
