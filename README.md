@@ -1,6 +1,6 @@
 # AWS Bedrock Agent National Parks Service Example
 
-This repository showcases how to use Amazon Bedrock to create AI agents that perform tasks on behalf of users. The agent enables users to ask natural language questions about national parks, processes these queries, and retrieves relevant information (when available) to provide accurate answers.
+This repository showcases how to use Amazon Bedrock to create AI agents that perform tasks on behalf of users. The agent enables users to ask natural language questions about national parks, processes these queries, and retrieves relevant information (when available) to provide accurate answers. See the related blog post [Building an AI Agent with AWS Bedrock for U.S. National Parks](https://chrisebert.net/building-an-ai-agent-with-aws-bedrock-for-u-s-national-parks-2/) for this project.
 
 This project utilizes Amazon Bedrock, Bedrock Action Groups, Amazon CDK, and AWS Lambda while integrating with the U.S. National Parks Service API to deliver a realistic example. The AI agent demonstrates a simple task: making a single API call using Amazon Bedrock Actions. It does not employ advanced AI patterns such as routing, chaining, or parallelization.
 
